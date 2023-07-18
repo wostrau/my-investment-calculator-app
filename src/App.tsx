@@ -4,14 +4,21 @@ import Header from './components/Header/Header';
 import ResultsTable from './components/ResultsTable/ResultsTable';
 import UserInput, { UserInputType } from './components/UserInput/UserInput';
 
+export type YearDataType = {
+  year: number;
+  yearlyInterest: number;
+  savingsEndOfYear: number;
+  yearlyContribution: number;
+};
+
 function App() {
-  const [userInput, setUserInput] = useState<any>(null);
+  const [userInput, setUserInput] = useState<UserInputType | null>(null);
 
   const calculateHandler = (userInput: UserInputType) => {
     setUserInput(userInput);
   };
 
-  const yearlyData = [];
+  const yearlyData: YearDataType[] = [];
 
   if (userInput) {
     let currentSavings = +userInput.currentSavings;
@@ -35,7 +42,8 @@ function App() {
     <div>
       <Header />
       <UserInput onCalculate={calculateHandler} />
-      <ResultsTable />
+      {!userInput && <p>No investment calculated yet.</p>}
+      {userInput && <ResultsTable data={yearlyData} initialInvestment={userInput.currentSavings} />}
     </div>
   );
 }
