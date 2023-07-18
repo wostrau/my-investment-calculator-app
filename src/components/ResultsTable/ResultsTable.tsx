@@ -1,6 +1,8 @@
 import React from 'react';
 import { YearDataType } from '../../App';
 
+import classes from './ResultsTable.module.css';
+
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -13,7 +15,7 @@ const ResultsTable: React.FC<{
   initialInvestment: number;
 }> = ({ data, initialInvestment }) => {
   return (
-    <table className='result'>
+    <table className={classes.result}>
       <thead>
         <tr>
           <th>Year</th>

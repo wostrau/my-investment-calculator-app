@@ -1,5 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 
+import classes from './UserInput.module.css';
+
 export type UserInputType = typeof initialUserInput;
 const initialUserInput = {
   currentSavings: 10000,
@@ -27,45 +29,45 @@ const UserInput: React.FC<{ onCalculate: (arg: UserInputType) => void }> = (
   };
 
   return (
-    <form onSubmit={submitHandler} className='form'>
-      <div className='input-group'>
+    <form onSubmit={submitHandler} className={classes.form}>
+      <div className={classes.inputGroup}>
         <p>
-          <label htmlFor='current-savings'>Current Savings ($)</label>
+          <label htmlFor='currentSavings'>Current Savings ($)</label>
           <input
             onChange={(event) =>
-              inputChangeHandler('current-savings', event.currentTarget.value)
+              inputChangeHandler('currentSavings', event.currentTarget.value)
             }
             type='number'
-            id='current-savings'
+            id='currentSavings'
             value={userInput.currentSavings}
           />
         </p>
         <p>
-          <label htmlFor='yearly-contribution'>Yearly Savings ($)</label>
+          <label htmlFor='yearlyContribution'>Yearly Savings ($)</label>
           <input
             onChange={(event) =>
               inputChangeHandler(
-                'yearly-contribution',
+                'yearlyContribution',
                 event.currentTarget.value
               )
             }
             type='number'
-            id='yearly-contribution'
+            id='yearlyContribution'
             value={userInput.yearlyContribution}
           />
         </p>
       </div>
-      <div className='input-group'>
+      <div className={classes.inputGroup}>
         <p>
-          <label htmlFor='expected-return'>
+          <label htmlFor='expectedReturn'>
             Expected Interest (%, per year)
           </label>
           <input
             onChange={(event) =>
-              inputChangeHandler('expected-return', event.currentTarget.value)
+              inputChangeHandler('expectedReturn', event.currentTarget.value)
             }
             type='number'
-            id='expected-return'
+            id='expectedReturn'
             value={userInput.expectedReturn}
           />
         </p>
@@ -81,11 +83,11 @@ const UserInput: React.FC<{ onCalculate: (arg: UserInputType) => void }> = (
           />
         </p>
       </div>
-      <p className='actions'>
-        <button type='reset' className='buttonAlt' onClick={resetHandler}>
+      <p className={classes.actions}>
+        <button type='reset' className={classes.buttonAlt} onClick={resetHandler}>
           Reset
         </button>
-        <button type='submit' className='button'>
+        <button type='submit' className={classes.button}>
           Calculate
         </button>
       </p>
