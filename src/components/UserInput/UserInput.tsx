@@ -25,7 +25,7 @@ const UserInput: React.FC<{ onCalculate: (arg: UserInputType) => void }> = (
   };
 
   const inputChangeHandler = (identifier: string, value: string) => {
-    setUserInput((prevState) => ({ ...prevState, [identifier]: value }));
+    setUserInput((prevState) => ({ ...prevState, [identifier]: +value }));
   };
 
   return (
