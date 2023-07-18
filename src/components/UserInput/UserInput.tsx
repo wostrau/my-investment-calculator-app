@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 
+export type UserInputType = typeof initialUserInput;
 const initialUserInput = {
   currentSavings: 10000,
   yearlyContribution: 1200,
@@ -7,11 +8,14 @@ const initialUserInput = {
   duration: 10,
 };
 
-const UserInput: React.FC = () => {
+const UserInput: React.FC<{ onCalculate: (arg: UserInputType) => void }> = (
+  props
+) => {
   const [userInput, setUserInput] = useState(initialUserInput);
 
   const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    props.onCalculate(userInput);
   };
 
   const resetHandler = () => {
